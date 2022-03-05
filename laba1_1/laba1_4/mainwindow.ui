@@ -96,7 +96,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>26</x>
@@ -184,12 +184,7 @@
          </item>
          <item>
           <property name="text">
-           <string>Video card</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Random Access Memory</string>
+           <string>RAM</string>
           </property>
          </item>
          <item>
@@ -246,7 +241,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>30</x>
