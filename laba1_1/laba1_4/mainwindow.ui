@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>838</width>
+    <width>1112</width>
     <height>668</height>
    </rect>
   </property>
@@ -19,7 +19,7 @@
      <rect>
       <x>420</x>
       <y>10</y>
-      <width>411</width>
+      <width>671</width>
       <height>351</height>
      </rect>
     </property>
@@ -27,10 +27,10 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>420</x>
+      <x>890</x>
       <y>370</y>
-      <width>241</width>
-      <height>191</height>
+      <width>201</width>
+      <height>254</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -59,7 +59,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="AddItem">
+      <widget class="QPushButton" name="Add">
        <property name="font">
         <font>
          <pointsize>10</pointsize>
@@ -79,6 +79,30 @@
        </property>
        <property name="text">
         <string>Sort</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Search">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Search</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Equipment">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Equipment</string>
        </property>
       </widget>
      </item>
@@ -139,11 +163,6 @@
          </item>
          <item>
           <property name="text">
-           <string>MSI</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
            <string>ASUS</string>
           </property>
          </item>
@@ -166,7 +185,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox">
+        <widget class="QComboBox" name="comboBoxType">
          <property name="font">
           <font>
            <pointsize>10</pointsize>
@@ -180,16 +199,6 @@
          <item>
           <property name="text">
            <string>Motherboard</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>RAM</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Disk drive</string>
           </property>
          </item>
          <item>
@@ -230,7 +239,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Price:                  </string>
+          <string>Price($):              </string>
          </property>
         </widget>
        </item>
@@ -293,13 +302,55 @@
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>450</y>
+      <width>361</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Low:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="Low"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_7">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Top:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="Top"/>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>838</width>
+     <width>1112</width>
      <height>26</height>
     </rect>
    </property>

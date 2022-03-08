@@ -1,8 +1,8 @@
 #include "computerParts.h"
 
-ComputerParts::ComputerParts(double price, bool isInStockse, QString type, QString model, QString firm)
+ComputerParts::ComputerParts(QString firm, QString type, QString model, double price, bool isInStockse)
 {
-	this->type = type; this->model = type; this->firm = firm;
+	this->type = type; this->model = model; this->firm = firm;
 	this->price = price;
 	this->isInStock = isInStockse;
 }

@@ -15,7 +15,8 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = Q_NULLPTR);
-
+    ~MainWindow();
+    void Sort();
 private slots:
 
     void on_OpenFile_clicked();
@@ -26,8 +27,26 @@ private slots:
 
     void on_ShowInfo_clicked();
 
+    void on_Search_clicked();
+
+    void on_Sort_clicked();
+    
+    void on_comboBoxFirm_activated(int index);
+    
+    void on_comboBoxType_activated(int index);
+
+    void on_radioButtonStock_clicked(bool checked);
+
+    void on_radioButtonNStock_clicked(bool checked);
+    
+    void on_Equipment_clicked();
+
 private:
     Ui::MainWindowClass ui;
-    static int size;
-    QString FilePath;
+    ComputerParts* itemOfCP;
+    int sizeOfArr, numOfCP;
+    QString FilePath, firm, type, model;
+    bool isInStock;
+    double price, lowPrice, topPrice;
+
 };

@@ -4,7 +4,7 @@
 class ComputerParts
 {
 public:
-	ComputerParts(double price = 0, bool isInStock = false, QString type = "", QString model = "", QString firm = "");
+	ComputerParts(QString firm = "", QString type = "", QString model = "", double price = 0, bool isInStock = false);
 	QString returnType();
 	QString returnModel();
 	QString returnFirm();
