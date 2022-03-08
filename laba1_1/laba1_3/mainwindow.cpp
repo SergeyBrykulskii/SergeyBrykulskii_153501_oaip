@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent)
     headers.append("Duration");
 
     ui.tableWidget->setHorizontalHeaderLabels(headers);
+
+    flag = 0;
 }
 
 void MainWindow::on_ChooseFile_clicked()
@@ -37,7 +39,7 @@ void MainWindow::makeTable()
     QTextStream fin(&file);
     QString data;
 
-    for (short i = 1; i < ui.tableWidget->rowCount(); ++i) {
+    for (int i = 1; i < ui.tableWidget->rowCount(); ++i) {
         data = fin.readLine();
 
         dates[i - 1].setData(data, Birthday);
@@ -75,7 +77,7 @@ void MainWindow::makeTable()
                 data = QString::number(dates[i - 1].DaysTillYourBirthday());
 
             else if (j == 7)
-                data = QString::number(dates[i - 1].Duration(Date("03.03.2021")));
+                data = QString::number(dates[i - 1].Duration(Date("10.03.2021")));
             
             ui.tableWidget->setItem(i, j, new QTableWidgetItem(data));
         }
@@ -105,6 +107,7 @@ void MainWindow::on_add_clicked()
             QMessageBox::critical(this, "Warning", "Please, choose file");
         else
         {
+            flag = 1;
             makeTable();
         }
     }
@@ -112,38 +115,47 @@ void MainWindow::on_add_clicked()
 
 void MainWindow::on_ChangeData_clicked()
 {
-    QString newDate = ui.lineEdit_2->text();
+    if (flag == 0)
+    {
+        QMessageBox::critical(this, "Warning", "Please, add birthday");
 
-    QRegularExpression expr("^\[0-3][0-3]\\.\[0-1][0-2]\\.\\d{4}\$");
-    QRegularExpressionMatch match2 = expr.match(newDate);
+    }
+    else
+    {
+        QString newDate = ui.lineEdit_2->text();
 
-    if (!match2.hasMatch())
-        QMessageBox::critical(this, "Warning", newDate + "Please, write right date\n**.**.****");
-    else if (FilePath.isEmpty())
-        QMessageBox::critical(this, "Warning", "Please, choose file");
-    else {
-        QFile file(FilePath);
-        
-        file.seek(0);
-        file.open(QFile::ReadOnly);
-        QTextStream fin(&file);
-
-        match2 = expr.match(fin.readLine());
+        QRegularExpression expr("^\[0-3][0-3]\\.\[0-1][0-2]\\.\\d{4}\$");
+        QRegularExpressionMatch match2 = expr.match(newDate);
 
         if (!match2.hasMatch())
+            QMessageBox::critical(this, "Warning", "Please, write right date\n**.**.****");
+        else if (FilePath.isEmpty())
             QMessageBox::critical(this, "Warning", "Please, choose file");
-        else
-        {
-            QFile newFile(FilePath);
-            newFile.open(QFile::Append);
+        else {
+            QFile file(FilePath);
+        
+            file.seek(0);
+            file.open(QFile::ReadOnly);
+            QTextStream fin(&file);
 
-            QTextStream fout(&newFile);
+            match2 = expr.match(fin.readLine());
 
-            fout << '\n' << newDate;
-            ui.tableWidget->insertRow(ui.tableWidget->rowCount());
+            if (!match2.hasMatch())
+                QMessageBox::critical(this, "Warning", "Please, choose file");
+            else
+            {
+                QFile newFile(FilePath);
+                newFile.open(QFile::Append);
 
-            makeTable();
+                QTextStream fout(&newFile);
+
+                fout << '\n' << newDate;
+
+
+                ui.tableWidget->insertRow(ui.tableWidget->rowCount());
+                makeTable();
+            
+            }
         }
     }
-
 }
