@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Circle">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABwAAAAACAAgAAAAAAAAAAAAAAgAAACAAQAAAAAAAAA=</HashCode>
+      <FileName>circle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hexagon">
+    <Position X="11.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABwAAAAAAAAgAAAAAEAAAAAAAAAAAACAAQAAACAAAAA=</HashCode>
+      <FileName>hexagon.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Paint" Collapsed="true">
+    <Position X="16.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>paint.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rectengle">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABwAAAAAAAAgQAAAAICAAAAAAAAAAACAAQAAAAAAAAA=</HashCode>
+      <FileName>rectengle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rhombus">
+    <Position X="7.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABwAAAAAAAAgAAAAAACQAAAAAAAAAACAAQAAAAAAAAA=</HashCode>
+      <FileName>rhombus.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shape">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>shape.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Square">
+    <Position X="14" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABwAAAAAAAAgAAAAAACAAAAAAAAAAACAAQAgAAAAAAA=</HashCode>
+      <FileName>square.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Star">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABwAACAACAAgAAAAAAAAAAAAAAAAAAAAgABgAAAAIAA=</HashCode>
+      <FileName>star.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Triangle">
+    <Position X="9.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABwAAAAAAAAgAAABAAAAAAAAAwAAAACAAQAAAAAAAAA=</HashCode>
+      <FileName>triangle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainWindow" Collapsed="true">
+    <Position X="18.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ARQBCEsPABwAWwoQoCCSbpGAWQAMGBCKggCaCFAAEEA=</HashCode>
+      <FileName>mainwindow.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Canva" Collapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>canva.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Timers" Collapsed="true">
+    <Position X="16.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAIAAAgAAAAAAAAAAAAAAAAAAACIQAAAAAAAIAA=</HashCode>
+      <FileName>mainwindow.cpp</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

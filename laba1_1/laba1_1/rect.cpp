@@ -73,16 +73,21 @@ Rect* Soldier::ShowArm()
 
 Head::Head(int pX, int pY, int ln, int wd)
 {
+    QColor color(240, 230, 140);
+    setBrush(color);
+
     posX = pX;
     posY = pY;
     len = ln;
     wid = wd;
 
-    QColor color(240, 230, 140);
-    setBrush(color);
-
-    setRect(0, 0, ln, wd); 
+    setRect(0, 0, ln, wd);
     setPos(pX, pY);
+}
+
+Head* Head::DrawHead(int pX, int pY, int ln, int wd)
+{
+    return (new Head(pX, pY, ln, wd));
 }
 
 Head::Head()

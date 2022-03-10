@@ -56,10 +56,14 @@ bool check_equals(Expression const* left, Expression const* right)
 
 int main() {
     Expression* sube = new BinaryOperation(new Number(4.5), '*', new Number(5));
+    cout << sube->evaluate() << endl;
 
     Expression* expr = new BinaryOperation(new Number(3), '+', sube);
+    cout << expr->evaluate() << endl;
 
     Expression* num = new Number(5);
+    cout << num->evaluate() << endl;
     
-    delete expr;
+    cout << check_equals(sube, expr) << endl;
+    cout << check_equals(sube, num) << endl;
 }

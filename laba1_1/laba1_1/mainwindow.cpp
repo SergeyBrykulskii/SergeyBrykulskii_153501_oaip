@@ -16,8 +16,8 @@ MainWindow::MainWindow(QWidget* parent)
     scene->addItem(sol->ShowLeg1());
     scene->addItem(sol->ShowLeg2());
     scene->addItem(sol->ShowArm());
-
-    scene->addItem(new Head(100, 160, 50, 50));
+    scene->addItem(sol->DrawHead(100, 160, 50, 50));
+    //scene->addItem(new Head(100, 160, 50, 50));
 
     moveTimer = new QTimer(this);
     connect(moveTimer, SIGNAL(timeout()), scene, SLOT(advance()));

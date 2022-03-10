@@ -104,6 +104,12 @@ void MainWindow::on_Triangle_clicked()
     
     getX1->move(60, 50); getX2->move(60, 90); getX3->move(60, 130);
     getY1->move(230, 50); getY2->move(230, 90); getY3->move(230, 130);
+    //getX1->setInputMask("999");
+    //getX2->setInputMask("999");
+    //getX3->setInputMask("999");
+    //getY1->setInputMask("999");
+    //getY2->setInputMask("999");
+    //getY3->setInputMask("999");
 
     connect(Enter, SIGNAL(clicked()), this, SLOT(drawTriangle()));
     connect(Enter, SIGNAL(clicked()), TrianParameters, SLOT(close()));
@@ -164,7 +170,8 @@ void MainWindow::on_Rectengle_clicked()
 
     getLen = new QLineEdit(RectParameters); getWid = new QLineEdit(RectParameters);
     getLen->move(60, 50); getWid->move(260, 50);
-    
+    //getLen->setInputMask("999");
+    //getWid->setInputMask("999");
     connect(Enter, SIGNAL(clicked()), this, SLOT(drawRectengle()));
     connect(Enter, SIGNAL(clicked()), RectParameters, SLOT(close()));
 
@@ -219,7 +226,7 @@ void MainWindow::on_Square_clicked()
 
     getLen = new QLineEdit(SquareParameters); 
     getLen->move(60, 50); 
-
+    //getLen->setInputMask("999");
     connect(Enter, SIGNAL(clicked()), this, SLOT(drawSquare()));
     connect(Enter, SIGNAL(clicked()), SquareParameters, SLOT(close()));
 
@@ -275,7 +282,8 @@ void MainWindow::on_Hexagon_clicked()
 
     getLen = new QLineEdit(HexagonParameters);
     getLen->move(60, 50);
-
+    //getLen->setInputMask("999");
+    //getLen->setCursorPosition(0);
     connect(Enter, SIGNAL(clicked()), this, SLOT(drawHexagon()));
     connect(Enter, SIGNAL(clicked()), HexagonParameters, SLOT(close()));
 
@@ -296,7 +304,7 @@ void MainWindow::drawHexagon()
         delete form;
         form = new Hexagon(len);
 
-        form->setPos(200, 200);
+        form->setPos(230, 150);
         scene->addItem(form);
 
         ui.Perimeter->setText(QString::number(form->returnPerimeter()));
@@ -331,6 +339,7 @@ void MainWindow::on_Circle_clicked()
 
     getLen = new QLineEdit(CircleParameters);
     getLen->move(60, 50);
+    //getLen->setInputMask("999");
 
     connect(Enter, SIGNAL(clicked()), this, SLOT(drawCircle()));
     connect(Enter, SIGNAL(clicked()), CircleParameters, SLOT(close()));
@@ -387,6 +396,7 @@ void MainWindow::on_Rhombus_clicked()
 
     getLen = new QLineEdit(RhombusParameters);
     getLen->move(60, 50);
+    //getLen->setInputMask("999");
 
     connect(Enter, SIGNAL(clicked()), this, SLOT(drawRhombus()));
     connect(Enter, SIGNAL(clicked()), RhombusParameters, SLOT(close()));
@@ -444,6 +454,7 @@ void MainWindow::on_Star_clicked()
 
     getLen = new QLineEdit(StarParameters);
     getLen->move(120, 50);
+    //getLen->setInputMask("999");
 
     connect(Enter, SIGNAL(clicked()), this, SLOT(drawStar()));
     connect(Enter, SIGNAL(clicked()), StarParameters, SLOT(close()));
@@ -592,6 +603,10 @@ void MainWindow::on_ZoomOut_pressed()
 void MainWindow::ZoomOut()
 {
     ui.graphicsView->scale(0.95, 0.95);
+
+    ui.Perimeter->setText(QString::number(ui.Perimeter->text().toDouble() * 0.95));
+    ui.Square_2->setText(QString::number(ui.Square_2->text().toDouble() * 0.95));
+
 }
 
 void MainWindow::on_ZoomOut_released()
@@ -608,6 +623,8 @@ void MainWindow::on_ZoomIn_pressed()
 void MainWindow::ZoomIn()
 {
     ui.graphicsView->scale(1.05, 1.05);
+    ui.Perimeter->setText(QString::number(ui.Perimeter->text().toDouble() * 1.05));
+    ui.Square_2->setText(QString::number(ui.Square_2->text().toDouble() * 1.05));
 }
 
 void MainWindow::on_ZoomIn_released()

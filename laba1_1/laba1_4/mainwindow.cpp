@@ -165,6 +165,10 @@ void MainWindow::on_Add_clicked()
     else
         price = checker.toDouble();
 
+    if (price == 0)
+    {
+        QMessageBox::critical(this, "Warning", "Please, write right price");
+    }
     if (!firm.isEmpty() && !type.isEmpty() && !model.isEmpty() && price != 0 && !FilePath.isEmpty())
     {
         itemOfCP[numOfCP] = ComputerParts(firm, type, model, price, isInStock);
@@ -528,6 +532,7 @@ void MainWindow::on_Equipment_clicked()
                             ui.tableWidget->setItem(ui.tableWidget->rowCount() - 1, 3, new QTableWidgetItem(sort3[k].returnPrice()));
                             ui.tableWidget->setItem(ui.tableWidget->rowCount() - 1, 4, new QTableWidgetItem(sort3[k].returnIsInStock()));
 
+                            ui.tableWidget->insertRow(ui.tableWidget->rowCount());
                         }
                     }
                 }
