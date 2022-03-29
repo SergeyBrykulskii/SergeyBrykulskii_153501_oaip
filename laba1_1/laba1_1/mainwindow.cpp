@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget* parent)
     connect(moveTimer, SIGNAL(timeout()), scene, SLOT(advance()));
 }
 bool MainWindow::flag = 0;
+//bool MainWindow::flag1 = 0;
 
 MainWindow::~MainWindow()
 {
@@ -35,6 +36,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushSoldier_clicked()
 {
+    
     moveTimer->start(1000 / 150);
 }
 

@@ -82,6 +82,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_Triangle_clicked()
 {
+    angl = 0;
     TrianParameters->setModal(true);
 
     TrianParameters->resize(400, 400);
@@ -150,6 +151,8 @@ void MainWindow::drawTriangle()
 //-------------------------------------------------------------------------------------------
 void MainWindow::on_Rectengle_clicked()
 {
+    angl = 0;
+
     RectParameters->setModal(true);
 
     RectParameters->resize(400, 400);
@@ -206,6 +209,8 @@ void MainWindow::drawRectengle()
 //-------------------------------------------------------------------------------------------
 void MainWindow::on_Square_clicked()
 {
+    angl = 0;
+
     SquareParameters->setModal(true);
 
     SquareParameters->resize(400, 400);
@@ -262,6 +267,8 @@ void MainWindow::drawSquare()
 //-------------------------------------------------------------------------------------------
 void MainWindow::on_Hexagon_clicked()
 {
+    angl = 0;
+
     HexagonParameters->setModal(true);
 
     HexagonParameters->resize(400, 400);
@@ -319,6 +326,8 @@ void MainWindow::drawHexagon()
 //-------------------------------------------------------------------------------------------
 void MainWindow::on_Circle_clicked()
 {
+    angl = 0;
+
     CircleParameters->setModal(true);
 
     CircleParameters->resize(400, 400);
@@ -376,6 +385,8 @@ void MainWindow::drawCircle()
 //-------------------------------------------------------------------------------------------
 void MainWindow::on_Rhombus_clicked()
 {
+    angl = 0;
+
     RhombusParameters->setModal(true);
 
     RhombusParameters->resize(400, 400);
@@ -434,6 +445,8 @@ void MainWindow::drawRhombus()
 //-------------------------------------------------------------------------------------------
 void MainWindow::on_Star_clicked()
 {
+    angl = 0;
+     
     StarParameters->setModal(true);
 
     StarParameters->resize(400, 400);

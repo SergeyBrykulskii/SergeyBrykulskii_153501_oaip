@@ -28,6 +28,6 @@ private slots:
 private:
     Ui::MainWindowClass ui;
     
-    bool flag;
+    bool flag, flag1;
     QString FilePath, Birthday;
 };

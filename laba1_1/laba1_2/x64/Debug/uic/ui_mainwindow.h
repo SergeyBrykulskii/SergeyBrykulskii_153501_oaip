@@ -144,6 +144,7 @@ public:
 
         Square_2 = new QLineEdit(layoutWidget1);
         Square_2->setObjectName(QStringLiteral("Square_2"));
+        Square_2->setReadOnly(true);
 
         horizontalLayout->addWidget(Square_2);
 
@@ -154,6 +155,7 @@ public:
 
         Perimeter = new QLineEdit(layoutWidget1);
         Perimeter->setObjectName(QStringLiteral("Perimeter"));
+        Perimeter->setReadOnly(true);
 
         horizontalLayout->addWidget(Perimeter);
 

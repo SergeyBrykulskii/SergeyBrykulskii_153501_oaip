@@ -43,6 +43,7 @@ public:
     QPushButton *Sort;
     QPushButton *Search;
     QPushButton *Equipment;
+    QPushButton *Delete;
     QPushButton *Exit;
     QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_2;
@@ -78,7 +79,7 @@ public:
     {
         if (MainWindowClass->objectName().isEmpty())
             MainWindowClass->setObjectName(QStringLiteral("MainWindowClass"));
-        MainWindowClass->resize(1112, 668);
+        MainWindowClass->resize(1112, 733);
         centralWidget = new QWidget(MainWindowClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         tableWidget = new QTableWidget(centralWidget);
@@ -86,7 +87,7 @@ public:
         tableWidget->setGeometry(QRect(420, 10, 671, 351));
         verticalLayoutWidget = new QWidget(centralWidget);
         verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(890, 370, 201, 254));
+        verticalLayoutWidget->setGeometry(QRect(890, 370, 201, 291));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -129,6 +130,12 @@ public:
         Equipment->setFont(font);
 
         verticalLayout->addWidget(Equipment);
+
+        Delete = new QPushButton(verticalLayoutWidget);
+        Delete->setObjectName(QStringLiteral("Delete"));
+        Delete->setFont(font);
+
+        verticalLayout->addWidget(Delete);
 
         Exit = new QPushButton(verticalLayoutWidget);
         Exit->setObjectName(QStringLiteral("Exit"));
@@ -304,6 +311,7 @@ public:
         Sort->setText(QApplication::translate("MainWindowClass", "Sort", Q_NULLPTR));
         Search->setText(QApplication::translate("MainWindowClass", "Search", Q_NULLPTR));
         Equipment->setText(QApplication::translate("MainWindowClass", "Equipment", Q_NULLPTR));
+        Delete->setText(QApplication::translate("MainWindowClass", "Clear file", Q_NULLPTR));
         Exit->setText(QApplication::translate("MainWindowClass", "Exit", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindowClass", "Firm:", Q_NULLPTR));
         comboBoxFirm->clear();

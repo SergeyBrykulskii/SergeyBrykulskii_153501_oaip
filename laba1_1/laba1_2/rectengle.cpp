@@ -7,7 +7,7 @@ Rectengle::Rectengle(int len, int wid, int x1, int y1) : Shape()
 }
 QRectF Rectengle::boundingRect() const
 {
-    return QRectF(0, 0, 500, 300);
+    return QRectF(-10000, -10000, 100000, 100000);
 }
 
 void Rectengle::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)

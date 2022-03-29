@@ -26,7 +26,8 @@ private slots:
     
 
 private:
-    static bool flag;
+  
+    static bool flag/*, flag1*/;
     Ui::MainWindowClass ui;
     QGraphicsScene* scene;
     QTimer* moveTimer;

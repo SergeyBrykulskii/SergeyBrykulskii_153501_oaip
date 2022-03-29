@@ -7,7 +7,7 @@ Square::Square(int len, int x1, int y1) : Shape()
 }
 QRectF Square::boundingRect() const
 {
-    return QRectF(0, 0, 500, 300);
+    return QRectF(-10000, -100000, 100000, 100000);
 }
 
 void Square::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)

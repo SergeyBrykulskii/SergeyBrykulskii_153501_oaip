@@ -7,7 +7,7 @@ Star::Star(int num, int x, int y, int radius) :  Shape()
 }
 QRectF Star::boundingRect() const
 {
-    return QRectF(0, 0, 500, 300);
+    return QRectF(-10000, -10000, 100000, 100000);
 }
 
 void Star::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)

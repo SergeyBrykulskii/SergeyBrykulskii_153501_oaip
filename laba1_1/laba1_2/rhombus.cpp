@@ -7,7 +7,7 @@ Rhombus::Rhombus(int len, int x1, int y1) : Shape()
 }
 QRectF Rhombus::boundingRect() const
 {
-    return QRectF(0, 0, 500, 300);
+    return QRectF(-10000, -10000, 100000, 100000);
 }
 
 void Rhombus::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)

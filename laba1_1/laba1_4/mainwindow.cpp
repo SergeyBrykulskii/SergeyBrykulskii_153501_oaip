@@ -1,8 +1,5 @@
 #include "mainwindow.h"
 
-QString FIRMS[4]{ "Intel", "HP", "MSI", "ASUS"};
-QString TYPE[5]{ "Processor", "Motherboard", "RAM", "Disk drive", "Case"};
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
@@ -50,14 +47,22 @@ void MainWindow::on_OpenFile_clicked()
     file.close();
 
     numOfCP = 0;
-    
-    if (checkData != "Intel" && checkData != "HP" && checkData != "ASUS")
+    DFilePath = "";
+    if (checkData == "")
     {
-        FilePath = "";
-        QMessageBox::critical(this, "Warning", "Please, choose correct file");
+        DFilePath = FilePath;
+    } 
+    else if (checkData != "Intel" && checkData != "HP" && checkData != "ASUS")
+    {
+        if (DFilePath == "")
+        {
+            FilePath = "";
+            QMessageBox::critical(this, "Warning", "Please, choose correct file");
+        }
     }
-    else
+    else if (DFilePath == "")
     {
+        
         file.open(QFile::ReadOnly);
         firm = fin.readLine();
 
@@ -96,15 +101,53 @@ void MainWindow::on_OpenFile_clicked()
 
             firm = fin.readLine();
         }
+        fin.seek(0);
+        file.close();
+
+        file.open(QFile::Append);
+
+        QTextStream fout(&file);
+
+        fout << "\n";
+
         firm = "";
         type = "";
         model = "";
         price = 0;
         isInStock = 0;
 
-        fin.seek(0);
         file.close();
     }
+}
+
+void MainWindow::on_Delete_clicked()
+{
+    if (FilePath == "")
+    {
+        QMessageBox::critical(this, "Warning", "Please, choose correct file");
+    }
+    else
+    {
+        QFile file(FilePath);
+
+        file.open(QFile::WriteOnly);
+
+        QTextStream fout(&file);
+
+        //fout << "";
+
+        //delete itemOfCP;
+        int num = ui.tableWidget->rowCount();
+        for (int i = 0; i < num; i++)
+        {
+            ui.tableWidget->removeRow(0);
+        }
+
+        sizeOfArr = 2;
+        numOfCP = 0;
+        //itemOfCP = new ComputerParts[sizeOfArr];
+    }
+
 }
 
 void MainWindow::on_ShowInfo_clicked()
@@ -137,7 +180,8 @@ void MainWindow::on_Add_clicked()
 {
     if(FilePath.isEmpty())
         QMessageBox::critical(this, "Warning", "Please, choose file");
-
+    else
+    {
     if(firm.isEmpty())
         QMessageBox::critical(this, "Warning", "Please, choose firm");
 
@@ -194,6 +238,13 @@ void MainWindow::on_Add_clicked()
             delete[] newItemOfCP;
         }
 
+        ui.tableWidget->insertRow(ui.tableWidget->rowCount());
+        ui.tableWidget->setItem(ui.tableWidget->rowCount() - 1, 0, new QTableWidgetItem(itemOfCP[numOfCP].returnFirm()));
+        ui.tableWidget->setItem(ui.tableWidget->rowCount() - 1, 1, new QTableWidgetItem(itemOfCP[numOfCP].returnType()));
+        ui.tableWidget->setItem(ui.tableWidget->rowCount() - 1, 2, new QTableWidgetItem(itemOfCP[numOfCP].returnModel()));
+        ui.tableWidget->setItem(ui.tableWidget->rowCount() - 1, 3, new QTableWidgetItem(itemOfCP[numOfCP].returnPrice()));
+        ui.tableWidget->setItem(ui.tableWidget->rowCount() - 1, 4, new QTableWidgetItem(itemOfCP[numOfCP].returnIsInStock()));
+
         numOfCP++;
 
         QFile file(FilePath);
@@ -202,7 +253,7 @@ void MainWindow::on_Add_clicked()
 
         QTextStream fout(&file);
         
-        fout << "\n" << firm << "\n" << type << "\n" << model << "\n" << price << "\n" << isInStock;
+        fout << firm << "\n" << type << "\n" << model << "\n" << price << "\n" << isInStock << "\n";
 
         file.close();
 
@@ -216,6 +267,8 @@ void MainWindow::on_Add_clicked()
     model = "";
     price = 0;
     isInStock = 0;
+
+    }
 }
 
 void MainWindow::on_Exit_clicked()

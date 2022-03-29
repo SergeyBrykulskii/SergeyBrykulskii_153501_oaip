@@ -21,6 +21,7 @@ private slots:
 
     void on_OpenFile_clicked();
 
+
     void on_Exit_clicked();
 
     void on_Add_clicked();
@@ -40,12 +41,14 @@ private slots:
     void on_radioButtonNStock_clicked(bool checked);
     
     void on_Equipment_clicked();
+    
+    void on_Delete_clicked();
 
 private:
     Ui::MainWindowClass ui;
     ComputerParts* itemOfCP;
     int sizeOfArr, numOfCP;
-    QString FilePath, firm, type, model;
+    QString DFilePath, FilePath, firm, type, model;
     bool isInStock;
     double price, lowPrice, topPrice;
 
