@@ -26,8 +26,6 @@ public:
 	int getTop() const;
 };
 
-#include "myStack.h"
-
 template<typename T>
 MyStack<T>::MyStack(int mSize) : size(mSize)
 {

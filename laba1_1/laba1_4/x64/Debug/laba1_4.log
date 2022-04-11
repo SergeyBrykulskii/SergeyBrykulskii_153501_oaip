@@ -1,5 +1,9 @@
 ﻿  Reading Qt configuration (C:/Qt/5.9.9/msvc2017_64/bin/qmake)
+  computerParts.cpp
   mainwindow.cpp
+  main.cpp
 C:\Users\Serxio\Desktop\QtProject\laba1_1\laba1_4\mainwindow.cpp(194,29): warning C4129: $: неизвестная escape-последовательность
 C:\Users\Serxio\Desktop\QtProject\laba1_1\laba1_4\mainwindow.cpp(321,33): warning C4129: $: неизвестная escape-последовательность
+  qrc_mainwindow.cpp
+  moc_mainwindow.cpp
   laba1_4.vcxproj -> C:\Users\Serxio\Desktop\QtProject\laba1_1\x64\Debug\laba1_4.exe
