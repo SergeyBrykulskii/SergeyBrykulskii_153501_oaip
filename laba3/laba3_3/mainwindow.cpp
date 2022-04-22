@@ -84,8 +84,6 @@ void MainWindow::on_Calculate_clicked()
 {
     for (int i = 0; i < ui.tableWidget->rowCount(); i++)
 	{
-		ui.tableWidget->setItem(i, 7, new QTableWidgetItem(DtoQStr(testExp[i].calculate())));
-        
-		
+		ui.tableWidget->setItem(i, 7, new QTableWidgetItem(DtoQStr(testExp[i].getResult())));
 	}
 }

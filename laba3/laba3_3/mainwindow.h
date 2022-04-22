@@ -20,7 +20,7 @@ public slots:
 
 	void on_Calculate_clicked();
 private:
-	Expression testExp[100];
+	Expression testExp[25];
 	int num;
     Ui::MainWindowClass ui;
 };

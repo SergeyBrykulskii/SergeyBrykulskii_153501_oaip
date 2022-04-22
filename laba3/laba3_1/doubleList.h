@@ -7,15 +7,21 @@ public:
 	DoubleList();
 	~DoubleList();
 
+	void push_back(T* data);
 	void Add(T* item);
 	void Remove(T* item);
 	void Clear();
+
 	T* GetFirst();
 	T* GetLast();
 	T* GetNext(T* item);
 	T* GetPrev(T* item);
+	T* Get(int index);
+
 	int GetCount();
 	bool Contains(T* item);
+
+	T& operator[](int index);
 private:
 	struct Node
 	{
@@ -41,6 +47,27 @@ template<typename T>
 DoubleList<T>::~DoubleList()
 {
 	Clear();
+}
+
+template<typename T>
+void DoubleList<T>::push_back(T* data)
+{
+	Node* node = new Node();
+	node->item = data;
+	node->next = nullptr;
+	node->prev = last;
+
+	if (last != nullptr)
+	{
+		last->next = node;
+	}
+	else
+	{
+		first = node;
+	}
+
+	last = node;
+	count++;
 }
 
 template<typename T>
@@ -118,6 +145,23 @@ void DoubleList<T>::Clear()
 }
 
 template<typename T>
+T* DoubleList<T>::Get(int index)
+{
+	if (index < 0 || index >= count)
+	{
+		return nullptr;
+	}
+
+	Node* node = first;
+	for (int i = 0; i < index; i++)
+	{
+		node = node->next;
+	}
+
+	return node->item;
+}
+
+template<typename T>
 T* DoubleList<T>::GetFirst()
 {
 	return first->item;
@@ -184,4 +228,15 @@ bool DoubleList<T>::Contains(T* item)
 	}
 
 	return false;
+}
+template<typename T>
+T& DoubleList<T>::operator[](int index)
+{
+	Node* node = first;
+	for (int i = 0; i < index; i++)
+	{
+		node = node->next;
+	}
+
+	return *(node->item);
 }

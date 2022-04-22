@@ -7,44 +7,20 @@ class Flight
 {
 private:
 	int flightNumber;
-	QDateTime departureTime;
+	QTime departureTime;
 	QString aircraftType;
 	QString arrivalAirport;
 	
+	QTime QStringToQDate(QString str);
+	
 public:
-	Flight(int flightNumber = 0, QDateTime departureTime = QDateTime(), QString aircraftType = "", QString arrivalAirport = "");
+	Flight(int flightNumber = 0, QString aircraftType = "", QString arrivalAirport = "", QString departureTime = "");
 	int getFlightNumber();
-	QDateTime getDepartureTime();
+	QTime getDepartureTime();
 	QString getAircraftType();
 	QString getArrivalAirport();
-
-};
 	
-Flight::Flight(int flightNumber, QDateTime departureTime, QString aircraftType, QString arrivalAirport)
-{
-	this->flightNumber = flightNumber;
-	this->departureTime = departureTime;
-	this->aircraftType = aircraftType;
-	this->arrivalAirport = arrivalAirport;
-}
-
-int Flight::getFlightNumber()
-{
-	return flightNumber;
-}
-
-QDateTime Flight::getDepartureTime()
-{
-	return departureTime;
-}
-
-QString Flight::getAircraftType()
-{
-	return aircraftType;
-}
-
-QString Flight::getArrivalAirport()
-{
-	return arrivalAirport;
-}
+	bool operator>(const Flight& other) const;
+	bool operator<(const Flight& other) const;
+};
 

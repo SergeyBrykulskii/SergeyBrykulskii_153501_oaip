@@ -1,4 +1,4 @@
 ﻿  Reading Qt configuration (C:/Qt/5.9.9/msvc2017_64/bin/qmake)
   expression.cpp
-  mainwindow.cpp
+C:\Users\Serxio\Desktop\QtProject\laba3\laba3_3\expression.cpp(89): warning C4715: Expression::getValue: значение возвращается не при всех путях выполнения
   laba3_3.vcxproj -> C:\Users\Serxio\Desktop\QtProject\laba3\x64\Debug\laba3_3.exe
