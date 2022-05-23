@@ -16,7 +16,7 @@ private:
 
     static constexpr size_t block_size = 16;
 
-    size_t _size; //current length of sequence
+    size_t _size; 
 
     iterator start;
     iterator finish;
@@ -25,9 +25,9 @@ public:
     {
         friend class deque;
     private:
-        T** node; //pointer to current chunk
+        T** node; 
         T* curr;
-        T* first;	//first and last elements in current chunk
+        T* first;	
         T* last;
 
     public:
@@ -64,7 +64,7 @@ public:
         {
             ptrdiff_t offset = n + curr - first;
 
-            if (offset >= 0 && offset <= block_size) {		//if it in the same block
+            if (offset >= 0 && offset <= block_size) {		
                 curr += offset;
             }
             else {
@@ -127,15 +127,11 @@ public:
     }
 
     void push_back(const T& value) {
-        //  check if there is the enough memory to insert element
         if (finish.curr != finish.last - 1) {
-            //  directly constructor.
             *finish.curr = value;
-            //  adjust the finish map iterator.
             ++finish.curr;
         }
         else {
-            //  the special push back version.
             push_back_aux(value);
         }
         ++_size;
@@ -229,8 +225,6 @@ private:
         size_t new_num_nodes = old_num_nodes + nodes_to_add;
         T** new_nstart;
         if (baseArray_size > 2 * new_num_nodes) {
-            //  to balance baseArray size.
-            //  just to avoid baseArray size being off balance.
             new_nstart = baseArray + (baseArray_size - new_num_nodes) / 2 + (add_at_front ? nodes_to_add : 0);
             if (new_nstart < start.node) {
                 std::copy(start.node, finish.node + 1, new_nstart);
@@ -241,26 +235,19 @@ private:
         }
         else {
             size_t new_baseArray_size = baseArray_size + std::max(baseArray_size, nodes_to_add) + 2;
-            //  allocate new memory for new map.
             T** new_baseArray = new T * [new_baseArray_size];
             new_nstart = new_baseArray + (new_baseArray_size - new_num_nodes) / 2 + (add_at_front ? nodes_to_add : 0);
-            //  copy original map.
             std::copy(start.node, finish.node + 1, new_nstart);
-            //  reallocate original map.
             delete[] baseArray;
-            //  set new map and corresponding size.
             baseArray = new_baseArray;
             baseArray_size = new_baseArray_size;
         }
-        //  reset start and finish node.
         start.set_node(new_nstart);
         finish.set_node(new_nstart + old_num_nodes - 1);
     }
 
     void reserve_baseArray_at_back(size_t nodes_to_add = 1) {
         if (nodes_to_add > baseArray_size - (finish.node - baseArray) - 1) {
-            //  if the size of back deque
-            //  reallocate map at back.
             reallocate_baseArray(nodes_to_add, false);
         }
     }
@@ -274,13 +261,9 @@ private:
     void push_back_aux(const T& t) {
         T t_copy = t;
         reserve_baseArray_at_back();
-        //  allocate new node buffer.
         *(finish.node + 1) = new T[block_size];
-        //  constructe.
         *finish.curr = t_copy;
-        //  change finish iterator to point to new node.
         finish.set_node(finish.node + 1);
-        //  set finish state.
         finish.curr = finish.first;
     }
 
@@ -288,10 +271,7 @@ private:
     void create_baseArray_and_nodes(size_t num_elements) {
         size_t num_nodes = num_elements / block_size + 1;
         baseArray_size = std::max(initial_baseArray_size, num_nodes + 2);
-        //  begin and last will be allocate more memory
-        //  to save time for inserting elements in deque.
         baseArray = new T * [baseArray_size];
-        //  set start and finish node in the middle of map.
         T** nstart = baseArray + (baseArray_size - num_nodes) / 2;
         T** nfinish = nstart + num_nodes - 1;
 		
