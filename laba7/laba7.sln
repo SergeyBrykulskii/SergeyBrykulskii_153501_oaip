@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Map", "Map\Map.vcxproj", "{8369C568-F0B3-4148-95A0-92A6F8DBF1C5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bitset", "Bitset\Bitset.vcxproj", "{671F44B0-FE55-4920-9E6D-ED49B1A4DECB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -15,6 +17,10 @@ Global
 		{8369C568-F0B3-4148-95A0-92A6F8DBF1C5}.Debug|x64.Build.0 = Debug|x64
 		{8369C568-F0B3-4148-95A0-92A6F8DBF1C5}.Release|x64.ActiveCfg = Release|x64
 		{8369C568-F0B3-4148-95A0-92A6F8DBF1C5}.Release|x64.Build.0 = Release|x64
+		{671F44B0-FE55-4920-9E6D-ED49B1A4DECB}.Debug|x64.ActiveCfg = Debug|x64
+		{671F44B0-FE55-4920-9E6D-ED49B1A4DECB}.Debug|x64.Build.0 = Debug|x64
+		{671F44B0-FE55-4920-9E6D-ED49B1A4DECB}.Release|x64.ActiveCfg = Release|x64
+		{671F44B0-FE55-4920-9E6D-ED49B1A4DECB}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
