@@ -143,6 +143,11 @@ public:
 
 	Node* insert(Node* p, Key key, T k) // вставка ключа k в дерево с корнем p
 	{
+		if (this->find(root, key) != nullptr)
+		{
+			return nullptr;
+		}
+		
 		if (!p)
 		{
 			treeSize++;
@@ -239,7 +244,7 @@ public:
 		return balance(p);
 	}
 
-	Node* find(Node* p, T key) // поиск ключа k в дереве p
+	Node* find(Node* p, Key key) // поиск ключа k в дереве p
 	{
 		if (!p) return nullptr;
 
@@ -308,9 +313,14 @@ public:
 			return current != other.current;
 		}
 		
-		T& operator*()
+		std::pair<const Key, T>& operator*()
 		{
-			return current->data.second;
+			return current->data;
+		}
+		
+		std::pair<const Key, T>* operator->()
+		{
+			return &current->data;
 		}
 	};
 
@@ -361,9 +371,9 @@ public:
 			return current != other.current;
 		}
 		
-		const T& operator*()
+		const std::pair<const Key, T>& operator*()
 		{
-			return current->data.second;
+			return current->data;
 		}
 	};
 	
@@ -414,9 +424,9 @@ public:
 			return current != other.current;
 		}
 		
-		T& operator*()
+		std::pair<const Key, T>& operator*()
 		{
-			return current->data.second;
+			return current->data;
 		}
 	};
 	
@@ -467,9 +477,9 @@ public:
 			return current != other.current;
 		}
 
-		const T& operator*()
+		const std::pair<const Key, T>& operator*()
 		{
-			return current->data.second;
+			return current->data;
 		}
 	};
 	
