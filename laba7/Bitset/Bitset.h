@@ -6,29 +6,29 @@ template<size_t Bits>
 class Bitset
 {
 	using Type = unsigned long long;
-	
+
 	static constexpr size_t _Bitsperword = CHAR_BIT * sizeof(Type);
-	static constexpr size_t _Words = Bits == 0 ? 0 : (Bits - 1) / _Bitsperword + 1; 
-	
-	Type _Array[_Words + 1];
+	static constexpr size_t _Words = Bits == 0 ? 0 : (Bits - 1) / _Bitsperword + 1;
+
+	Type _Array[_Words];
 
 public:
-	
+
 	class reference
 	{
 		friend class Bitset<Bits>;
 	private:
-		
+
 		Bitset<Bits>* _PtrBitset;
 		size_t _Mypos; // position of element in bitset
-		
+
 		reference(Bitset<Bits>& ptr, size_t pos) : _PtrBitset(&ptr), _Mypos(pos) {}
-		
+
 		reference() noexcept : _PtrBitset(nullptr), _Mypos(0) {}
 	public:
-		
+
 		~reference() noexcept {}
-		
+
 		reference& operator=(bool val) noexcept
 		{
 			_PtrBitset->set_unchecked(_Mypos, val);
@@ -47,31 +47,31 @@ public:
 
 		bool operator~() const {
 			return !_PtrBitset->subscript(_Mypos);
-		}		
-		
+		}
+
 		operator bool() const noexcept { return _PtrBitset->subscript(_Mypos); }
 	};
-	
+
 	Bitset() : _Array{} {}
-	
-	Bitset(unsigned long long val) : _Array{val} {}
+
+	Bitset(unsigned long long val) : _Array{ val } {}
 
 	Bitset(const std::string& val) : _Array{}
 	{
 		size_t count = val.size() > Bits ? Bits : val.size(), pos = 0;
-		
+
 		for (size_t i = count - 1; i >= 0; --i)
 		{
 			set_unchecked(pos, val[i] == '1');
 			++pos;
 		}
 	}
-	
+
 	reference operator[](size_t pos) {
 		if (pos < Bits) {
 			return reference(*this, pos);
 		}
-		
+
 		throw std::out_of_range("bitset index outside range");
 	}
 
@@ -79,11 +79,11 @@ public:
 		if (pos < Bits) {
 			return subscript(pos);
 		}
-		
+
 		throw std::out_of_range("bitset index outside range");
 	}
 
-	Bitset& flip() { 
+	Bitset& flip() {
 		for (size_t pos = 0; pos < _Words; ++pos) {
 			_Array[pos] = ~_Array[pos];
 		}
@@ -92,10 +92,10 @@ public:
 		return *this;
 	}
 
-	Bitset& flip(size_t pos)    
+	Bitset& flip(size_t pos)
 	{
 		if (Bits <= pos) {
-			throw std::out_of_range("bitset out of range"); /
+			throw std::out_of_range("bitset out of range");
 		}
 		_Array[pos / _Bitsperword] ^= Type{ 1 } << pos % _Bitsperword;
 		return *this;
@@ -107,7 +107,7 @@ public:
 			return true;
 		}
 
-		bool no_padding = bits % _Bitsperword == 0;
+		bool no_padding = Bits % _Bitsperword == 0;
 		for (size_t w_pos = 0; w_pos < _Words + no_padding - 1; ++w_pos) {
 			if (_Array[w_pos] != ~static_cast<Type>(0)) {
 				return false;
@@ -116,7 +116,7 @@ public:
 
 		return no_padding || _Array[_Words - 1] == (static_cast<Type>(1) << (Bits % _Bitsperword)) - 1;
 	}
-	
+
 	bool any() const {
 		for (size_t pos = 0; pos < _Words; ++pos) {
 			if (_Array[pos] != 0) {
@@ -140,7 +140,7 @@ public:
 	bool none() const {
 		return !any();
 	}
-	
+
 	Bitset& set(size_t pos, bool val = true) noexcept { // set all bits true 
 		if (Bits <= pos) {
 			throw std::out_of_range("bitset out of range"); // pos off end
@@ -208,7 +208,7 @@ public:
 	std::string to_string() const
 	{
 		std::string str;
-		str.reserve(bits);
+		str.reserve(Bits);
 		char zero = '0', one = '1';
 		for (auto pos = Bits; 0 < pos;) {
 			str.push_back(subscript(--pos) ? one : zero);
@@ -256,14 +256,14 @@ public:
 
 		return static_cast<unsigned long>(_Array[0]);
 	}
-	
-	
+
+
 private:
-	constexpr bool subscript(size_t pos) const 
+	constexpr bool subscript(size_t pos) const
 	{
 		return (_Array[pos / _Bitsperword] & (Type{ 1 } << pos % _Bitsperword)) != 0;
 	}
-	
+
 	Bitset& set_unchecked(size_t pos, bool val) noexcept
 	{
 		auto& selected_word = _Array[pos / _Bitsperword];
@@ -284,7 +284,7 @@ private:
 			_Array[_Words - 1] &= (Type{ 1 } << Bits % _Bitsperword) - 1;
 		}
 	}
-	
+
 	Bitset& flip_unchecked(size_t pos) noexcept
 	{
 		auto& selected_word = _Array[pos / _Bitsperword];
@@ -294,19 +294,19 @@ private:
 		return *this;
 	}
 
-	
+
 };
 
 template <size_t Bits>
 Bitset<Bits> operator&(const Bitset<Bits>& left, const Bitset<Bits>& right) noexcept {
-	Bitset<bits> answer = left;
+	Bitset<Bits> answer = left;
 	answer &= right;
 	return answer;
 }
 
 template <size_t Bits>
 Bitset<Bits> operator|(const Bitset<Bits>& left, const Bitset<Bits>& right) noexcept {
-	Bitset<bits> answer = left;
+	Bitset<Bits> answer = left;
 	answer |= right;
 	return answer;
 }

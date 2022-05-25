@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include <list>
 
 template<class Key, class T, class Compare = std::less<Key>>
 class Map
@@ -15,13 +16,11 @@ private:
 		Node* parent;
 		short height;
 		
-		//Node() : data(), left(nullptr), right(nullptr), height(0), parent(nullptr) {}
-
 		Node(Key key, T data) : data(std::pair<const Key, T>(key, data)), left(nullptr), right(nullptr), height(1), parent(nullptr) {}
 	};
 
+	std::list<std::pair<const Key, T>> list_of_nodes;
 	
-
 	Node* root;
 	int treeSize;
 	int* countOfEachDepth;
@@ -144,13 +143,15 @@ public:
 
 	Node* insert(Node* p, Key key, T k) // вставка ключа k в дерево с корнем p
 	{
-
 		if (!p)
 		{
 			treeSize++;
 			if (root == nullptr)
 			{
 				root = new Node(key, k);
+				root->parent = nullptr;
+				list_of_nodes.push_back(std::pair<const Key, T>(key, k));
+				list_of_nodes.sort();
 				return root;
 			}
 			else
@@ -159,7 +160,7 @@ public:
 			}
 		}
 
-		if (key < p->data->first)
+		if (key < p->data.first)
 		{
 			p->left = insert(p->left, key, k);
 			if (p->left != nullptr)
@@ -175,20 +176,20 @@ public:
 		return balance(p);
 	}
 
-	Node* remove(Node* p, Key key, T k) // удаление ключа k из дерева p
+	Node* remove(Node* p, Key key) // удаление ключа k из дерева p
 	{
 		if (!p) return 0;
 
-		if (key < p->data->first)
+		if (key < p->data.first)
 		{
-			p->left = remove(p->left, key, k);
+			p->left = remove(p->left, key);
 			if (p->left != nullptr)
 				p->left->parent = p;
 		}
-		else if (key > p->data->key)
+		else if (key > p->data.first)
 		{
 
-			p->right = remove(p->right, key, k);
+			p->right = remove(p->right, key);
 			if (p->right != nullptr)
 				p->right->parent = p;
 
@@ -197,6 +198,9 @@ public:
 		{
 			Node* q = p->left;
 			Node* r = p->right;
+
+			list_of_nodes.remove(p->data);
+			
 			delete p;
 
 			if (p == root)
@@ -225,7 +229,10 @@ public:
 				min->left->parent = min;
 
 			if (root == nullptr)
+			{
 				root = min;
+				root->parent = nullptr;
+			}
 			treeSize--;
 			return balance(min);
 		}
@@ -236,13 +243,13 @@ public:
 	{
 		if (!p) return nullptr;
 
-		if (key < p->data->first)
+		if (key < p->data.first)
 		{
 			if (p->left == nullptr)
 				return nullptr;
 			return find(p->left, key);
 		}
-		else if (key > p->data->first)
+		else if (key > p->data.first)
 		{
 			if (p->right == nullptr)
 				return nullptr;
@@ -283,7 +290,92 @@ public:
 			}
 			return *this;
 		}
-		Iterator& operator--()
+		
+		Iterator operator++(int)
+		{
+			Iterator tmp = *this;
+			++*this;
+			return tmp;
+		}
+
+		bool operator==(const Iterator& other)
+		{
+			return current == other.current;
+		}
+		
+		bool operator!=(const Iterator& other)
+		{
+			return current != other.current;
+		}
+		
+		T& operator*()
+		{
+			return current->data.second;
+		}
+	};
+
+	struct constIterator
+	{
+		Node* current;
+		Node* root;
+
+		constIterator(Node* root) : current(root), root(root) {}
+		constIterator(Node* root, Node* current) : current(current), root(root) {}
+
+		constIterator& operator++()
+		{
+			if (current->right != nullptr)
+			{
+				current = current->right;
+				while (current->left != nullptr)
+				{
+					current = current->left;
+				}
+			}
+			else
+			{
+				Node* p = current;
+				while (p->parent != nullptr && p->parent->right == p)
+				{
+					p = p->parent;
+				}
+				current = p->parent;
+			}
+			return *this;
+		}
+
+		constIterator operator++(int)
+		{
+			constIterator tmp = *this;
+			++*this;
+			return tmp;
+		}
+
+		bool operator==(const constIterator& other)
+		{
+			return current == other.current;
+		}
+		
+		bool operator!=(const constIterator& other)
+		{
+			return current != other.current;
+		}
+		
+		const T& operator*()
+		{
+			return current->data.second;
+		}
+	};
+	
+	struct reverseIterator
+	{
+		Node* current;
+		Node* root;
+
+		reverseIterator(Node* root) : current(root), root(root) {}
+		reverseIterator(Node* root, Node* current) : current(current), root(root) {}
+
+		reverseIterator& operator++()
 		{
 			if (current->left != nullptr)
 			{
@@ -304,19 +396,218 @@ public:
 			}
 			return *this;
 		}
-		
-		Iterator operator++(int)
+
+		reverseIterator operator++(int)
 		{
-			Iterator tmp = *this;
+			reverseIterator tmp = *this;
 			++*this;
 			return tmp;
 		}
-		
-		Iterator operator--(int)
+
+		bool operator==(const reverseIterator& other)
 		{
-			Iterator tmp = *this;
-			--*this;
-			return tmp;
+			return current == other.current;
+		}
+		
+		bool operator!=(const reverseIterator& other)
+		{
+			return current != other.current;
+		}
+		
+		T& operator*()
+		{
+			return current->data.second;
 		}
 	};
+	
+	struct constReverseIterator
+	{
+		Node* current;
+		Node* root;
+
+		constReverseIterator(Node* root) : current(root), root(root) {}
+		constReverseIterator(Node* root, Node* current) : current(current), root(root) {}
+
+		constReverseIterator& operator++()
+		{
+			if (current->left != nullptr)
+			{
+				current = current->left;
+				while (current->right != nullptr)
+				{
+					current = current->right;
+				}
+			}
+			else
+			{
+				Node* p = current;
+				while (p->parent != nullptr && p->parent->left == p)
+				{
+					p = p->parent;
+				}
+				current = p->parent;
+			}
+			return *this;
+		}
+
+		constReverseIterator operator++(int)
+		{
+			constReverseIterator tmp = *this;
+			++*this;
+			return tmp;
+		}
+
+		bool operator==(const constReverseIterator& other)
+		{
+			return current == other.current;
+		}
+
+		bool operator!=(const constReverseIterator& other)
+		{
+			return current != other.current;
+		}
+
+		const T& operator*()
+		{
+			return current->data.second;
+		}
+	};
+	
+	struct ListIterator {
+		typedef typename std::list<std::pair<Key, T>>::iterator iterator;
+		iterator it;
+		ListIterator(iterator it) : it(it) {}
+		
+		std::pair<Key, T> operator*() {
+			return *it;
+		}
+		ListIterator operator++() {
+			++it;
+			return *this;
+		}
+		ListIterator operator++(int) {
+			ListIterator tmp = *this;
+			++it;
+			return tmp;
+		}
+		bool operator==(const ListIterator& other) {
+			return it == other.it;
+		}
+		bool operator!=(const ListIterator& other) {
+			return it != other.it;
+		}
+	};
+
+	struct constListIterator {
+		typedef typename std::list<std::pair<Key, T>>::const_iterator iterator;
+		iterator it;
+		constListIterator(iterator it) : it(it) {}
+		
+		std::pair<Key, T> operator*() {
+			return *it;
+		}
+		constListIterator operator++() {
+			++it;
+			return *this;
+		}
+		constListIterator operator++(int) {
+			constListIterator tmp = *this;
+			++it;
+			return tmp;
+		}
+		bool operator==(const constListIterator& other) {
+			return it == other.it;
+		}
+		bool operator!=(const constListIterator& other) {
+			return it != other.it;
+		}
+	};
+	
+	Iterator begin()
+	{
+		if (root == nullptr)
+			return Iterator(root);
+		Node* p = root;
+		while (p->left != nullptr)
+		{
+			p = p->left;
+		}
+		return Iterator(root, p);
+	}
+
+	Iterator end()
+	{
+		return nullptr;
+	}
+	
+	constIterator cbegin() const
+	{
+		if (root == nullptr)
+			return constIterator(root);
+		Node* p = root;
+		while (p->left != nullptr)
+		{
+			p = p->left;
+		}
+		return constIterator(root, p);
+	}
+	
+	constIterator cend() const
+	{
+		return nullptr;
+	}
+	
+	reverseIterator rbegin()
+	{
+		if (root == nullptr)
+			return reverseIterator(root);
+		Node* p = root;
+		while (p->right != nullptr)
+		{
+			p = p->right;
+		}
+		return reverseIterator(root, p);
+	}
+	
+	reverseIterator rend()
+	{
+		return nullptr;
+	}
+	
+	constReverseIterator crbegin() const
+	{
+		if (root == nullptr)
+			return constReverseIterator(root);
+		Node* p = root;
+		while (p->right != nullptr)
+		{
+			p = p->right;
+		}
+		return constReverseIterator(root, p);
+	}
+	
+	constReverseIterator crend() const
+	{
+		return nullptr;
+	}
+
+	ListIterator lbegin()
+	{
+		return ListIterator(list.begin());
+	}
+	
+	ListIterator lend()
+	{
+		return ListIterator(list.end());
+	}
+
+	constListIterator clbegin() const
+	{
+		return constListIterator(list.cbegin());
+	}
+	
+	constListIterator clend() const
+	{
+		return constListIterator(list.cend());
+	}
 };

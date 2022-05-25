@@ -7,6 +7,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Map", "Map\Map.vcxproj", "{
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bitset", "Bitset\Bitset.vcxproj", "{671F44B0-FE55-4920-9E6D-ED49B1A4DECB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Unordered_Map", "Unordered_Map\Unordered_Map.vcxproj", "{1D139604-5064-4AB5-980F-B1415F143A52}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Set", "Set\Set.vcxproj", "{FE6EDDB9-2960-4137-9E1F-7786E5B91B82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +25,14 @@ Global
 		{671F44B0-FE55-4920-9E6D-ED49B1A4DECB}.Debug|x64.Build.0 = Debug|x64
 		{671F44B0-FE55-4920-9E6D-ED49B1A4DECB}.Release|x64.ActiveCfg = Release|x64
 		{671F44B0-FE55-4920-9E6D-ED49B1A4DECB}.Release|x64.Build.0 = Release|x64
+		{1D139604-5064-4AB5-980F-B1415F143A52}.Debug|x64.ActiveCfg = Debug|x64
+		{1D139604-5064-4AB5-980F-B1415F143A52}.Debug|x64.Build.0 = Debug|x64
+		{1D139604-5064-4AB5-980F-B1415F143A52}.Release|x64.ActiveCfg = Release|x64
+		{1D139604-5064-4AB5-980F-B1415F143A52}.Release|x64.Build.0 = Release|x64
+		{FE6EDDB9-2960-4137-9E1F-7786E5B91B82}.Debug|x64.ActiveCfg = Debug|x64
+		{FE6EDDB9-2960-4137-9E1F-7786E5B91B82}.Debug|x64.Build.0 = Debug|x64
+		{FE6EDDB9-2960-4137-9E1F-7786E5B91B82}.Release|x64.ActiveCfg = Release|x64
+		{FE6EDDB9-2960-4137-9E1F-7786E5B91B82}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
