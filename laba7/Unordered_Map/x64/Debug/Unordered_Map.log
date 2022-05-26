@@ -1,0 +1,5 @@
+﻿  Reading Qt configuration (C:/Qt/5.9.9/msvc2017_64/bin/qmake)
+  mainwindow.cpp
+C:\Users\Serxio\Desktop\QtProject\laba7\Unordered_Map\mainwindow.cpp(18,40): warning C4552: "<": результат выражения не используется
+C:\Users\Serxio\Desktop\QtProject\laba7\Unordered_Map\mainwindow.cpp(50,40): warning C4552: "<": результат выражения не используется
+  Unordered_Map.vcxproj -> C:\Users\Serxio\Desktop\QtProject\laba7\x64\Debug\Unordered_Map.exe
